@@ -1,13 +1,15 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use ir_sensor::button_events;
+mod event_payload;
+mod button_loop;
+
+
+use button_loop::start_button_loop;
 
 fn main() {
     tauri::Builder::default()
-        .setup(|app| {
-            app.emit_all("button", Payload { message: "Tauri is awesome!".into() }).unwrap();
-
-            Ok(())
+        .on_page_load(|app, _ev| {
+            start_button_loop(app);
         })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

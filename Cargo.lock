@@ -1274,7 +1274,7 @@ dependencies = [
 [[package]]
 name = "ir_sensor"
 version = "0.1.0"
-source = "git+https://github.com/chlohal/ir-sensor?rev=7b8b4c0f#7b8b4c0f6d72d3c4671e1e989ae8982fcdf95f60"
+source = "git+https://github.com/chlohal/ir-sensor?rev=a7978778#a7978778331aa16ed4dfa408c438bbd11826bebf"
 dependencies = [
  "rppal",
 ]
