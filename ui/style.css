@@ -24,7 +24,7 @@ body {
     grid-template-rows: min-content 1fr;
 
     padding: 2em;
-    gap: 2em;
+    column-gap: 2em;
 }
 
 .serp .input {
@@ -32,7 +32,8 @@ body {
     grid-row: 1 / 3;
 }
 
-.serp .results, .serp .search {
+.serp .results,
+.serp .search {
     grid-column: 2;
 }
 
@@ -40,13 +41,66 @@ body {
     padding: 1em;
 }
 
-.serp .search input {
+.serp .results {
+    overflow: auto;
+    scrollbar-width: thin;
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+}
+
+
+/* Chrome, Edge and Safari */
+.serp .results::-webkit-scrollbar {
+    width: 10px;
+    width: 10px;
+}
+
+.serp .results::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #073b4c;
+}
+
+.serp .results::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background-color: #aad8;
+}
+
+.serp .results .search-item {
+    width: 100%;
+    padding: 1em;
+    border: 1px solid #aadf;
+}
+
+.serp .search .input-display {
     width: 100%;
     padding: 1em;
     background: 0;
     border: 1px solid #aad5;
     font: inherit;
     color: inherit;
+    display: flex;
+}
+
+.serp .search .input-value {
+    display: inline-block;
+}
+
+.serp .search .input-cursor {
+    display: inline-block;
+    border-left: 1px solid #aad5;
+    margin-left: 0.125ch;
+    animation: fade-in-out 1s infinite linear;
+}
+
+@keyframes fade-in-out {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .serp .input {
@@ -61,13 +115,14 @@ body {
     grid-template-rows: repeat(4, 6em);
 }
 
+
 .fun-keyboard--num-button {
     outline: 1px solid #aad5;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+
 }
 
 .fun-keyboard--num-button .num {
@@ -81,18 +136,47 @@ body {
     font-weight: bold;
 }
 
+.search-item:focus, .fun-keyboard--num-button:focus, .pointer-focused {
+    background-image: linear-gradient(45deg, #073b4c, #275868);
+    outline: #34768b solid 3px;
+}
+
+.fun-keyboard--parent[coloured] .fun-keyboard--num-button .num {
+    font-weight: bold;
+}
+
+.fun-keyboard--parent[coloured=yellow] .fun-keyboard--num-button .num,
 .op.yellow {
     color: #ffd166;
 }
 
+.fun-keyboard--parent[coloured=green] .fun-keyboard--num-button .num,
 .op.green {
     color: #06d6a0;
 }
 
+.fun-keyboard--parent[coloured=red] .fun-keyboard--num-button .num,
 .op.red {
     color: #ef476f;
 }
 
+.fun-keyboard--parent[coloured=blue] .fun-keyboard--num-button .num,
 .op.blue {
     color: #118ab2;
+}
+
+.fun-keyboard--parent[coloured=yellow] {
+    background: linear-gradient(#0000, #ffd16633);
+}
+
+.fun-keyboard--parent[coloured=green] {
+    background: linear-gradient(#0000, #06d6a033);
+}
+
+.fun-keyboard--parent[coloured=red] {
+    background: linear-gradient(#0000, #ef476f33);
+}
+
+.fun-keyboard--parent[coloured=blue] {
+    background: linear-gradient(#0000, #118ab233);
 }

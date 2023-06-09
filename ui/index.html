@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script defer src="./movies.js"></script>
     <script defer src="./script.js"></script>
     <link href="./style.css" rel="stylesheet">
 </head>
@@ -12,14 +13,18 @@
 <body>
     <div class="serp">
         <div class="input">
-            <div class="fun-keyboard--parent">
+            <div class="fun-keyboard--parent" for="serp-input" results="results">
 
             </div>
         </div>
         <div class="search">
-            <input class="inputter">
+            <span class="input-display">
+                <span class="input-value" id="serp-input"></span>
+                <span class="input-cursor"></span>
+                &nbsp;
+            </span>
         </div>
-        <div class="results">
+        <div class="results" id="results">
 
         </div>
 
