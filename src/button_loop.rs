@@ -8,8 +8,7 @@ pub fn start_button_loop(app: Window) {
 
     if let Ok(button_events) = ir_sensor::button_events() {
         std::thread::spawn(move || {
-            loop {
-                let button = button_events.recv().unwrap();
+            for button in button_events {
                 app.emit_all("button", Payload { button: format!("{:?}", button) }).unwrap();
 
 

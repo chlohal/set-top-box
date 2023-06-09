@@ -81,6 +81,11 @@ function focus_nav_grid(x, y) {
     oldElem.classList.remove("pointer-focused");
 
     elem.focus();
+    elem.addEventListener("blur", function l() {
+        elem.removeEventListener(blur, l);
+
+        elem.classList.remove("pointer-focused");
+    });
     elem.classList.add("pointer-focused");
 
     current_nav = [x, y];
@@ -140,10 +145,11 @@ function makeKeyboardButton(row, column, input, results) {
         if(color == "") {
             inputWhenPress = num.textContent = getNumText(row, column);
         } else {
-            let bigDisplay = getOpts(row, column)[getIndexOfColour(color)];
+            let bigDisplay = getOpts(row, column)[getIndexOfColour(color)] || "";
             inputWhenPress = bigDisplay;
 
             if (bigDisplay == " ") bigDisplay = "_";
+            if(bigDisplay == "") bigDisplay = "\xa0"; //nbsp to prevent layout shift
             num.textContent = bigDisplay;
         }
     })
@@ -195,6 +201,6 @@ function getNumText(row, column) {
         ["1", "2", "3"],
         ["4", "5", "6"],
         ["7", "8", "9"],
-        ["-", "0", "OK"],
+        ["-", "0", " "],
     ][row][column];
 }
